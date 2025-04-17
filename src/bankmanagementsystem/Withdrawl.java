@@ -13,6 +13,8 @@ public class Withdrawl extends JFrame implements ActionListener
 	JTextField amount;
 	JButton withdraw,back;
 	String pinNumber;
+	//Object is created because we have to use another class variable(non-static) in this class
+	BalanceEnquiry bala = new BalanceEnquiry(pinNumber);
 	
 	Withdrawl(String pinNumber)
 	{
@@ -57,21 +59,31 @@ public class Withdrawl extends JFrame implements ActionListener
 		{
 			String number = amount.getText();
 			Date date = new Date();
+			
 			if (number.equals(""))
 			{
 				JOptionPane.showMessageDialog(null, "Please enter the amount you eant to deposit");
 			}
 			else
 			{
+				int num1 = Integer.parseInt(number);
 				try {
 					Connect connect = new Connect();
 					String query = "insert into bank values('"+pinNumber+"', '"+date+"', 'Withdraw', '"+number+"')";
-					connect.s.executeUpdate(query);
-					JOptionPane.showMessageDialog(null, "Rs "+number+" Withdrawal Successfully");
-					setVisible(false);
-					new Transactions(pinNumber).setVisible(true);
+					if (num1<bala.balance) {
+							connect.s.executeUpdate(query);
+							JOptionPane.showMessageDialog(null, "Rs "+number+" Withdrawal Successfully");
+							setVisible(false);
+							new Transactions(pinNumber).setVisible(true);
+						
+					}
+					
+					else {
+						JOptionPane.showMessageDialog(null, "Insufficient Balance");
+					}
+					
 				} catch (Exception e2) {
-					System.out.println(e);
+					System.out.println(e2);
 				}
 			}
 		}

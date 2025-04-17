@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class Login extends JFrame implements ActionListener
 {
-	JButton login,clear,signup;
+	JButton login,clear,signup,exit;
 	JTextField cardTextField;
 	JPasswordField pinTextField;
 	
@@ -22,12 +22,12 @@ public class Login extends JFrame implements ActionListener
 		Image i2 = i1.getImage().getScaledInstance(150, 100, Image.SCALE_DEFAULT);
 		ImageIcon i3 = new ImageIcon(i2);
 		JLabel label = new JLabel(i3);
-		label.setBounds(70, 10, 150, 100);
+		label.setBounds(120, 10, 150, 100);
 		add(label);
 		
 		JLabel text = new JLabel("Welcome to ATM");
 		text.setFont(new Font("Osward", Font.BOLD, 38));
-		text.setBounds(200, 40, 400, 40);
+		text.setBounds(250, 40, 400, 40);
 		add(text);
 		
 		JLabel cardNo = new JLabel("Card No:");
@@ -71,6 +71,13 @@ public class Login extends JFrame implements ActionListener
 		signup.addActionListener(this);
 		add(signup);
 		
+		exit = new JButton("EXIT"); 
+        exit.setBounds(365, 400, 100, 30); 
+        exit.setBackground(Color.RED);
+        exit.setForeground(Color.WHITE);
+        exit.addActionListener(this); 
+        add(exit); 
+		
 		getContentPane().setBackground(Color.WHITE);
 		
 		setSize(800, 600);
@@ -111,6 +118,10 @@ public class Login extends JFrame implements ActionListener
 		{
 			setVisible(false);
 			new SignUp1().setVisible(true);
+		}
+		else if(e.getSource() == exit)
+		{
+			System.exit(0);
 		}
 		
 	}

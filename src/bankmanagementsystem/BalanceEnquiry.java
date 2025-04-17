@@ -11,6 +11,7 @@ public class BalanceEnquiry extends JFrame implements ActionListener
 {
 	JButton back;
 	String pinNumber;
+	public int balance = 0;
 	BalanceEnquiry(String pinNumber)
 	{
 		this.pinNumber = pinNumber;
@@ -30,7 +31,7 @@ public class BalanceEnquiry extends JFrame implements ActionListener
 		image.add(back);
 		
 		Connect connect = new Connect();
-		int balance = 0;
+		
 		try {
 			ResultSet rs = connect.s.executeQuery("select * from bank where pin = '"+pinNumber+"'");
 			while (rs.next()) 

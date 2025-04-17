@@ -226,7 +226,7 @@ public class SignUp3 extends JFrame implements ActionListener
 					
 					JOptionPane.showMessageDialog(null, "Card Number: " + cardNumber + "\n Pin: " + pinNumber);
 					setVisible(false);
-					new Deposit(pinNumber).setVisible(false);
+					new Login().setVisible(true);
 					
 				}
 			} catch (Exception e1) {
